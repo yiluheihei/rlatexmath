@@ -10,10 +10,14 @@
 #' @param expr an R expression.
 #' @keywords internal
 latex_env <- function(expr) {
-  # known special symbols
-  know_symbol_env <- make_env(special_symbol, transform_know_symbol)
+  # unknown symbols
+  symbols <- all.vars(expr)
+  symbol_env <- make_env(symbols, transform_unknown_symbol)
 
-  know_symbol_env
+  # known special symbols
+  known_symbol_env <- make_env(special_symbol, transform_known_symbol, symbol_env)
+
+  known_symbol_env
 }
 
 #' create environment for symbols or calls
@@ -29,9 +33,12 @@ make_env <- function(x, f, parent = empty_env(), ...) {
 
   new_environment(dat, parent)
 }
+
+
 ################################################################################
 # special symbols, such as greek letters, dots or infinity
 ################################################################################
+
 special_symbol <- c(
   # greek lowercase and letters
   "alpha", "theta", "tau", "beta", "vartheta", "pi", "upsilon",
@@ -50,8 +57,71 @@ special_symbol <- c(
 
 #' transform known symbols to latex math, add prefix \\
 #' @keywords internal
-transform_know_symbol <- function(symbol) {
+transform_known_symbol <- function(symbol) {
   paste0('\\', symbol)
 }
+
+
+################################################################################
+# unknown symbols
+################################################################################
+#' Find all symbols in the given expression
+#'
+#' Function used to find all symbols by walking the AST of R expression.
+#' @keywords internal
+find_all_symbols <- function(expr) {
+  switch_expr(expr,
+    constant = character(),
+    symbol = as.character(expr),
+    call = flat_map_chr(as.list(expr[-1]), ~ unique(find_all_symbols(.x)))
+  )
+}
+
+# leave unknown symbol as is
+transform_unknown_symbol <- function(symbol) {
+  escape(symbol)
+}
+
+#' check the expression type
+#'
+#' There are four types of expressions in R, including constant, symbol, call
+#'  and pairlist. This function was to check the type of expresison.
+#' @keywords internal
+check_expr_type <- function(expr) {
+  if (rlang::is_syntactic_literal(expr)) {
+    "constant"
+  } else if (is.symbol(expr)) {
+    "symbol"
+  } else if (is.call(expr)) {
+    "call"
+  } else if (is.pairlist(expr)) {
+    "pairlist"
+  } else {
+    typeof(expr)
+  }
+
+}
+
+#' switch evaluated type of `expr`
+#' @param expr an expression.
+#' @param ... the list of alternatives.
+#' @keywords internal
+switch_expr <- function(expr, ...) {
+  switch(check_expr_type(expr),
+    ...,
+    stop("Don't know how to handle type ", typeof(expr), call. = FALSE)
+  )
+}
+
+
+#' flattern `map` results into a single character vector
+#' @param .x,.f,... arguments inherits from [`purrr::map()`].
+#' @keywords internal
+flat_map_chr <- function(.x, .f, ...) {
+  purrr::flatten_chr(purrr::map(.x, .f, ...))
+}
+
+
+
 
 

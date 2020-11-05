@@ -9,7 +9,8 @@ Description: Tools for converting mathematically R code to equivalent latex
 License: GPL-3
 Imports:
     rlang,
-    knitr
+    knitr,
+    purrr
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
