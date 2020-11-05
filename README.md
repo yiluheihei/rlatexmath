@@ -1,4 +1,13 @@
 
+[![R build
+status](https://github.com/yiluheihei/rlatexmath/workflows/R-CMD-check/badge.svg)](https://github.com/yiluheihei/rlatexmath/actions)
+[![License: GPL
+v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/yiluheihei/microbiomeMarker/blob/master/LICENSE.md)
+[![Codecov test
+coverage](https://codecov.io/gh/yiluheihei/rlatexmath/branch/master/graph/badge.svg)](https://codecov.io/gh/yiluheihei/rlatexmath?branch=master)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+
 Tools for converting R expressions to latex mathematical equations. This
 project is scratch from the [section 21.3 transforms mathematically R
 code into its LaTeX
