@@ -1,5 +1,5 @@
 ---
-output: github_document
+output: md_document
 ---
 
 ```{r setup, include=FALSE}
@@ -7,10 +7,6 @@ knitr::opts_chunk$set(echo = TRUE)
 library(knitr)
 ```
 
-[![R build status](https://github.com/yiluheihei/rlatexmath/workflows/R-CMD-check/badge.svg)](https://github.com/yiluheihei/rlatexmath/actions)
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/yiluheihei/microbiomeMarker/blob/master/LICENSE.md)
-[![Codecov test coverage](https://codecov.io/gh/yiluheihei/rlatexmath/branch/master/graph/badge.svg)](https://codecov.io/gh/yiluheihei/rlatexmath?branch=master)
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
 Tools for converting R expressions to latex mathematical equations. This project
 is scratch from the [section 21.3 transforms mathematically R code into its LaTeX
@@ -27,6 +23,94 @@ translate_latexmath(pi)
 # quoted object
 translate_latexmath_(quote(pi))
 ```
+
+
+### Know funcitons
+
+ R expression     |latex math                                
+-------------------|------------------------------------------
+<b>Binary operators</b>|
+x + y                |`r translate_latexmath(x+y)`
+x - y                |`r translate_latexmath(x - y)`
+x \* y                |`r translate_latexmath(x * y)`
+x / y                |`r translate_latexmath(x / y)`
+x %+-% y             |`r translate_latexmath(x %+-% y)`
+x %/% y             |`r translate_latexmath(x %/% y )`
+x %\*% y             |`r translate_latexmath(x %*% y )`
+x %.% y             |`r translate_latexmath(x %.% y )`
+x[i]                |`r translate_latexmath(x[i])`
+x^i                |`r translate_latexmath(x^i)`
+<b>Grouping</b>|
+(x + y)             |`r translate_latexmath((x+y))`
+{x y}               |`r translate_latexmath({x + y})`
+<b>Juxtaposition</b>|
+paste(x, y, z)      |`r translate_latexmath(paste(x, y, z))`
+<b>Comma separated lists</b>|
+list(x + y, z)      |`r translate_latexmath(list(x + y, z))`
+<b>Fractions</b>|
+frac(x, y)          |`r translate_latexmath(frac(x, y))`
+atop(x, y)          |`r translate_latexmath(atop(x, y))`
+<b>Ellipsis</b>|
+list(x[1], cdots, x[2])|`r translate_latexmath(list(x[1], cdots, x[2]))`
+list(x[1], ldots, x[2])|`r translate_latexmath(list(x[1], ldots, x[2]))`
+<b>Radicals</b>|
+sqrt(x)             |`r translate_latexmath(sqrt(x))`
+sqrt(x, y)          |`r translate_latexmath(sqrt(x, y))`
+<b>Relation</b>|
+x == y              | `r translate_latexmath(x == y)`
+x != y              | `r translate_latexmath(x != y)`
+x < y              | `r translate_latexmath(x < y)`
+x > y              | `r translate_latexmath(x > y)`
+x >= y              | `r translate_latexmath(x >= y)`
+x <= y              | `r translate_latexmath(x <= y)`
+x %==% y              | `r translate_latexmath(x %==% y)`
+x %~~% y              | `r translate_latexmath(x %~~% y)`
+x %=~% y              | `r translate_latexmath(x %=~% y)`
+x %prop% y              | `r translate_latexmath(x %prop% y)`
+<b>Set</>|
+x %supset% y            | `r translate_latexmath(x %supset% y)`
+x %supseteq% y            | `r translate_latexmath(x %supseteq% y)`
+x %subset% y            | `r translate_latexmath(x %subset% y)`
+x %notsubset% y            | `r translate_latexmath(x %notsubset% y)`
+x %subseteq% y            | `r translate_latexmath(x %subseteq% y)`
+x %in% y            | `r translate_latexmath(x %in% y)`
+x %notin% y            | `r translate_latexmath(x %notin% y)`
+<b>Arrow</b> |
+x %<->% y          |`r translate_latexmath(x %<->% y)`
+x %<-% y           |`r translate_latexmath(x %<-% y)`
+x %up% y           |`r translate_latexmath(x %up% y)`
+x %->% y           |`r translate_latexmath(x %->% y)`
+x %down% y         |`r translate_latexmath(x %down% y)`
+x %<=>% y          |`r translate_latexmath(x %<=>% y)`
+x %<=% y           |`r translate_latexmath(x %<=% y)`
+x %dblup% y        |`r translate_latexmath(x %dblup% y)`
+x %=>% y           |`r translate_latexmath(x %=>% y)`
+x %dbldown% y      |`r translate_latexmath(x %dbldown% y)`
+<b>Accent</b>|
+tilde(x)|`r translate_latexmath(tilde(x))`
+hat(x)|`r translate_latexmath(hat(x))`
+widetilde(x)|`r translate_latexmath(widetilde(x))`
+widehat(x)|`r translate_latexmath(widehat(x))`
+bar(x)|`r translate_latexmath(bar(x))`
+<b>Operators</b>|
+sum(x[i])| `r translate_latexmath(sum(x[i]))`sum(x[i], i==1, n)| `r translate_latexmath(sum(x[i], i==1, n))`
+prod(x[i])| `r translate_latexmath(prod(x[i]))`
+prod(x[i], i==1, n)| `r translate_latexmath(prod(x[i], i==1, n))`
+integral(f(x)\*{dx}, a, b)| `r translate_latexmath(integral(x*{dx}, a, b))`
+union(A[i], i==1, n)| `r translate_latexmath(union(A[i], i==1, n))`
+intersect(A[i], i==1, n)| `r translate_latexmath(union(A[i], i==1, n))`
+lim(f(x), x %->% infty)| `r translate_latexmath(lim(x, x %->% infty))`
+min(f(x), x >= 0)|`r translate_latexmath(min(x, x >= 0))`
+max(f(x), x >= 0)|`r translate_latexmath(max(x, x >= 0))`
+<b>Typeface</b>|
+plain(x)| `r translate_latexmath(plain(x))`
+bold(x)| `r translate_latexmath(bold(x))`
+italic(x)| `r translate_latexmath(italic(x))`
+bolditalic(x)| `r translate_latexmath(bolditalic(x))`
+<b>Delimiters</b>|
+group("(", list(a,b), "]")|`r translate_latexmath(group("(", list(a,b), "]"))`
+bgroup("[", frac(a,b), "]")|`r translate_latexmath(bgroup("[", frac(a,b), "]"))`
+abs(x)| `r translate_latexmath(abs(x))`
 
 ## related projects
 

@@ -10,26 +10,29 @@
 #' @param expr an R expression.
 #' @keywords internal
 latex_env <- function(expr) {
+  # known functions
+  known_function_env <- make_env(R_KNOW_OP, translate_know_function)
+
   # unknown symbols
   symbols <- all.vars(expr)
-  symbol_env <- make_env(symbols, transform_unknown_symbol)
+  symbol_env <- make_env(symbols, translate_unknown_symbol, known_function_env)
 
   # known special symbols
-  known_symbol_env <- make_env(special_symbol, transform_known_symbol, symbol_env)
+  known_symbol_env <- make_env(special_symbol, translate_known_symbol, symbol_env)
 
   known_symbol_env
 }
 
 #' create environment for symbols or calls
-#' @param x a symbol or call.
-#' @param f function to transform symbols or calls to latex math.
-#' @param ... other arguments passed to `f`.
+#' @param .x a symbol or call.
+#' @param .f function to transform symbols or calls to latex math.
+#' @param ... other arguments passed to `.f`.
 #' @importFrom rlang empty_env set_names new_environment
 #' @keywords internal
 #' @return an environment.
-make_env <- function(x, f, parent = empty_env(), ...) {
-  dat <- f(x, ...)
-  dat <- set_names(dat, x)
+make_env <- function(.x, .f, parent = empty_env(), ...) {
+  dat <- .f(.x, ...)
+  dat <- set_names(dat, .x)
 
   new_environment(dat, parent)
 }
@@ -57,7 +60,7 @@ special_symbol <- c(
 
 #' transform known symbols to latex math, add prefix \\
 #' @keywords internal
-transform_known_symbol <- function(symbol) {
+translate_known_symbol <- function(symbol) {
   paste0('\\', symbol)
 }
 
@@ -78,7 +81,7 @@ find_all_symbols <- function(expr) {
 }
 
 # leave unknown symbol as is
-transform_unknown_symbol <- function(symbol) {
+translate_unknown_symbol <- function(symbol) {
   escape(symbol)
 }
 

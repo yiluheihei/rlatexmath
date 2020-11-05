@@ -4,14 +4,14 @@
 \alias{make_env}
 \title{create environment for symbols or calls}
 \usage{
-make_env(x, f, parent = empty_env(), ...)
+make_env(.x, .f, parent = empty_env(), ...)
 }
 \arguments{
-\item{x}{a symbol or call.}
+\item{.x}{a symbol or call.}
 
-\item{f}{function to transform symbols or calls to latex math.}
+\item{.f}{function to transform symbols or calls to latex math.}
 
-\item{...}{other arguments passed to \code{f}.}
+\item{...}{other arguments passed to \code{.f}.}
 }
 \value{
 an environment.
