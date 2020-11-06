@@ -5,7 +5,9 @@
 #' @param char character
 #' @return The same value marked as `latexmath` class.
 #' @export
-latexmath <- function(char) structure(char, class = "latexmath")
+latexmath <- function(char) {
+  structure(char, class = "latexmath")
+}
 
 #' Print method for latexmath
 #'

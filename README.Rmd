@@ -1,5 +1,5 @@
 ---
-output: md_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
@@ -7,6 +7,10 @@ knitr::opts_chunk$set(echo = TRUE)
 library(knitr)
 ```
 
+[![R build status](https://github.com/yiluheihei/rlatexmath/workflows/R-CMD-check/badge.svg)](https://github.com/yiluheihei/rlatexmath/actions)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/yiluheihei/microbiomeMarker/blob/master/LICENSE.md)
+[![Codecov test coverage](https://codecov.io/gh/yiluheihei/rlatexmath/branch/master/graph/badge.svg)](https://codecov.io/gh/yiluheihei/rlatexmath?branch=master)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
 Tools for converting R expressions to latex mathematical equations. This project
 is scratch from the [section 21.3 transforms mathematically R code into its LaTeX
@@ -96,12 +100,12 @@ bar(x)|`r translate_latexmath(bar(x))`
 sum(x[i])| `r translate_latexmath(sum(x[i]))`sum(x[i], i==1, n)| `r translate_latexmath(sum(x[i], i==1, n))`
 prod(x[i])| `r translate_latexmath(prod(x[i]))`
 prod(x[i], i==1, n)| `r translate_latexmath(prod(x[i], i==1, n))`
-integral(f(x)\*{dx}, a, b)| `r translate_latexmath(integral(x*{dx}, a, b))`
+integral(f(x)\*{dx}, a, b)| `r translate_latexmath(integral(f(x)*{dx}, a, b))`
 union(A[i], i==1, n)| `r translate_latexmath(union(A[i], i==1, n))`
 intersect(A[i], i==1, n)| `r translate_latexmath(union(A[i], i==1, n))`
-lim(f(x), x %->% infty)| `r translate_latexmath(lim(x, x %->% infty))`
-min(f(x), x >= 0)|`r translate_latexmath(min(x, x >= 0))`
-max(f(x), x >= 0)|`r translate_latexmath(max(x, x >= 0))`
+lim(f(x), x %->% infty)| `r translate_latexmath(lim(f(x), x %->% infty))`
+min(f(x), x >= 0)|`r translate_latexmath(min(f(x), x >= 0))`
+max(f(x), x >= 0)|`r translate_latexmath(max(f(x), x >= 0))`
 <b>Typeface</b>|
 plain(x)| `r translate_latexmath(plain(x))`
 bold(x)| `r translate_latexmath(bold(x))`
