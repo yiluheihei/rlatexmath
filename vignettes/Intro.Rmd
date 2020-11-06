@@ -1,16 +1,22 @@
 ---
-output: github_document
+title: "Intro"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Intro}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(knitr)
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
 ```
 
-[![R build status](https://github.com/yiluheihei/rlatexmath/workflows/R-CMD-check/badge.svg)](https://github.com/yiluheihei/rlatexmath/actions)
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/yiluheihei/microbiomeMarker/blob/master/LICENSE.md)
-[![Codecov test coverage](https://codecov.io/gh/yiluheihei/rlatexmath/branch/master/graph/badge.svg)](https://codecov.io/gh/yiluheihei/rlatexmath?branch=master)
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+```{r setup}
+library(rlatexmath)
+```
 
 Tools for converting R expressions to latex mathematical equations. This project
 is scratch from the [section 21.3 transforms mathematically R code into its LaTeX
@@ -114,15 +120,3 @@ bolditalic(x)| `r translate_latexmath(bolditalic(x))`
 group("(", list(a,b), "]")|`r translate_latexmath(group("(", list(a,b), "]"))`
 bgroup("[", frac(a,b), "]")|`r translate_latexmath(bgroup("[", frac(a,b), "]"))`
 abs(x)| `r translate_latexmath(abs(x))`
-
-## related projects
-
-- [equatiomatic](https://github.com/datalorax/equatiomatic)
-- [latex2exp](https://github.com/stefano-meschiari/latex2exp)
-- [textables](https://github.com/setzler/textables)
-
-## Acknowledgements
-
-- [Hadley Wickham's book advanced R](https://adv-r.hadley.nz/translation.html#latex). 
-Both the idea and the code are scratch from this book.
-

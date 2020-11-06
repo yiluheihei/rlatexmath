@@ -31,7 +31,7 @@ translate_latexmath_(quote(pi))
 
 *π*
 
-### Know funcitons
+### Known functions
 
 | R expression                  | latex math                                  |
 |-------------------------------|---------------------------------------------|
