@@ -12,6 +12,12 @@ library(knitr)
 [![Codecov test coverage](https://codecov.io/gh/yiluheihei/rlatexmath/branch/master/graph/badge.svg)](https://codecov.io/gh/yiluheihei/rlatexmath?branch=master)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
+**NOTE: Markdown does not support well for mathematical equations. And some 
+equations not displayed properly in this page, such as `$\frac{x}{y}$`, 
+`$\sqrt[y]{x}$` and `$\prod_{i = 1}^{n} x_i$`, . See the 
+[html vignette](https://yiluheihei.github.io/rlatexmath/articles/Intro.html) for
+all the correct displayed equations.**
+
 Tools for converting R expressions to latex mathematical equations. This project
 is scratch from the [section 21.3 transforms mathematically R code into its LaTeX
 equivalent](https://adv-r.hadley.nz/translation.html#latex).
